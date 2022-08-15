@@ -39,7 +39,7 @@
                         <div class="modal-dialog modal-lg " data-bs-backdrop="true">
                             <div class="modal-content">
                                <video controls class="embed-responsive-item" id="film_video">
-                                   <source src="https://b.vinterfilm.cc/46961-ancharted-na-kartah-ne-znachitsja-2022.html?t=1890" type="video/mp4">
+                                   <source src="{{ asset('storage/'. $film->film) }}" type="video/mp4">
                                </video>
                             </div>
                         </div>

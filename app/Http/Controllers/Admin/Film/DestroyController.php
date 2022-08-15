@@ -11,6 +11,7 @@ class DestroyController extends Controller
 {
     public function __invoke(Film $film)
     {	
+    	
     	$film->delete();
     	return redirect()->back();
     }
