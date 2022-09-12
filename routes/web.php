@@ -12,17 +12,17 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::group(['namespace'=> 'App\HTTP\Controllers\Main'], function() {
+Route::group(['namespace'=> 'App\Http\Controllers\Main'], function() {
 	Route::get('/','HomeController')->name('home_page');
 	Route::get('/film/{film}','FilmController')->name('film_page');
-	Route::get('/categories/genres/{genre}','MoviesByGenreController')->name('movies_by_genre_page');
 	Route::get('/categories/{category}','MoviesByCategoryController')->name('movies_by_category_page');
 	Route::get('/search','SearchController')->name('search');
-	
+
 });
-Route::group(['middleware' => ['auth','admin'], 'namespace'=> 'App\HTTP\Controllers\Admin', 'prefix'=>'admin'], function() {
+
+Route::group(['middleware' => ['auth','admin'], 'namespace'=> 'App\Http\Controllers\Admin', 'prefix'=>'admin'], function() {
 	Route::get('/', 'PanelController')->name('admin_panel');
-	
+
 
 	Route::group(['namespace'=> 'Category','prefix'=>'category'], function() {
 		Route::get('/','IndexController')->name('category_index');
@@ -32,7 +32,7 @@ Route::group(['middleware' => ['auth','admin'], 'namespace'=> 'App\HTTP\Controll
 		Route::patch('/{category}','UpdateController')->name('category_update');
 		Route::delete('/{category}','DestroyController')->name('category_destroy');
 	});
-	Route::group(['namespace'=> 'Film','prefix'=>'film'], 
+	Route::group(['namespace'=> 'Film','prefix'=>'film'],
 		function() {
 		Route::get('/','IndexController')->name('film_index');
 		Route::get('/create','CreateController')->name('film_create');
@@ -41,7 +41,7 @@ Route::group(['middleware' => ['auth','admin'], 'namespace'=> 'App\HTTP\Controll
 		Route::patch('/{film}','UpdateController')->name('film_update');
 		Route::delete('/{film}','DestroyController')->name('film_destroy');
 	});
-	Route::group(['namespace'=> 'Genre','prefix'=>'genre'], 
+	Route::group(['namespace'=> 'Genre','prefix'=>'genre'],
 		function() {
 		Route::get('/','IndexController')->name('genre_index');
 		Route::get('/create','CreateController')->name('genre_create');
@@ -51,7 +51,7 @@ Route::group(['middleware' => ['auth','admin'], 'namespace'=> 'App\HTTP\Controll
 		Route::delete('/{genre}','DestroyController')->name('genre_destroy');
 	});
 
-	Route::group(['namespace'=> 'User','prefix'=>'user'], 
+	Route::group(['namespace'=> 'User','prefix'=>'user'],
 		function() {
 		Route::get('/','IndexController')->name('user_index');
 		Route::get('/create','CreateController')->name('user_create');
@@ -66,5 +66,13 @@ Route::group(['middleware' => ['auth','admin'], 'namespace'=> 'App\HTTP\Controll
 	});
 });
 
+Route::group(['namespace' => 'App\Http\Controllers\Auth','middleware' => 'guest'], function() {
+    Route::get('/vk/redirect', 'VkAuthController@redirect')->name('redirect_vk');
+    Route::get('/auth/callback', 'VkAuthController@callback');
+});
 
 Auth::routes();
+
+
+
+
