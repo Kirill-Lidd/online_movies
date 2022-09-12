@@ -21,15 +21,7 @@
                     <ul class="navbar-nav me-auto my-2 my-lg-0 " style="--bs-scroll-height: 100px;">
                         @foreach($CategoryController->categories() as $category)
                         <li class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle"  id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                {{$category->title}}
-                            </a>
-                            <ul class="dropdown-menu " aria-labelledby="navbarDropdown">
-                                <li><a href="{{ route('movies_by_category_page',$category->id) }}" class="dropdown-item">Все {{ Str::lower($category->title) }} </a></li>
-                                @foreach($CategoryController->genres() as $genre) 
-                                <li><a href="{{ route('movies_by_genre_page',$genre->id) }}" class="dropdown-item " >{{ $genre->title }}</a></li>
-                                @endforeach
-                            </ul>
+                            <a href="{{route('movies_by_category_page', $category->id)}}" class="nav-link" >{{$category->title}}</a>
                         </li>
                         @endforeach
                     </ul>
@@ -47,14 +39,14 @@
                           <form action="{{ route('logout') }}" method="post">
                             @csrf
                               <input type="submit" class="btn btn-outline-light" value="Выйти">
-                          </form> 
+                          </form>
                         @else
                         <div>
                             <a href="{{ route('login') }}" class="btn btn-outline-light">Войти</a>
                         </div>
                         @endif
                     </div>
-                   
+
                 </div>
             </div>
         </nav>

@@ -13,8 +13,7 @@ class MoviesByCategoryController extends Controller
     public function __invoke(Category $category)
     {
     	$films = Film::where('category_id',$category->id)->get();
-    	$genres = Genre::all();
 
-    	return view('layouts.movies_by_category',compact('films','genres','category'));
+    	return view('layouts.movies_by_category',compact('films','category'));
     }
 }

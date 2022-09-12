@@ -15,12 +15,6 @@
                         <h2>{{ $film->title }}</h2>
                         <h6>{{ $film->year_release }}г</h6>
                         <p class="card-text text-truncate ">
-                            @foreach($genres as $genre)
-                                @if(in_array($genre->id, $film->genres->pluck('id')->toArray()))
-                                    {{ $loop->first ? '' : ',' }}
-                                    {{ $genre->title }}
-                                @endif
-                            @endforeach
                         </p>
                     </div>
                 </div>
