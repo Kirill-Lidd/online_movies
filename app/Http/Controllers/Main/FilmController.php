@@ -12,6 +12,7 @@ class FilmController extends Controller
     public function __invoke(Film $film)
     {
     	$genres = Genre::all();
+
     	return view('layouts.film',compact('film','genres'));
     }
 }

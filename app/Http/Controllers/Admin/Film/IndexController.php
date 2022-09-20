@@ -11,6 +11,7 @@ class IndexController extends Controller
 	public function __invoke()
 	{
     	$films = Film::all();
+
     	return view('admin.film.index', compact('films'));
 	}
 }

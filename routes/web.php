@@ -32,17 +32,21 @@ Route::group(['middleware' => ['auth','admin'], 'namespace'=> 'App\Http\Controll
 		Route::patch('/{category}','UpdateController')->name('category_update');
 		Route::delete('/{category}','DestroyController')->name('category_destroy');
 	});
-	Route::group(['namespace'=> 'Film','prefix'=>'film'],
-		function() {
+	Route::group(['namespace'=> 'Film','prefix'=>'film'], function() {
 		Route::get('/','IndexController')->name('film_index');
 		Route::get('/create','CreateController')->name('film_create');
 		Route::post('/store','StoreController')->name('film_store');
 		Route::get('/{film}/edit','EditController')->name('film_edit');
 		Route::patch('/{film}','UpdateController')->name('film_update');
 		Route::delete('/{film}','DestroyController')->name('film_destroy');
+
+        Route::group(['namespace'=> 'Comment','prefix'=>'comment'], function() {
+            Route::get('/{film}','IndexController')->name('comment_index');
+            Route::delete('/{comment}','DestroyController')->name('comment_destroy');
+        });
 	});
-	Route::group(['namespace'=> 'Genre','prefix'=>'genre'],
-		function() {
+
+	Route::group(['namespace'=> 'Genre','prefix'=>'genre'], function() {
 		Route::get('/','IndexController')->name('genre_index');
 		Route::get('/create','CreateController')->name('genre_create');
 		Route::post('/store','StoreController')->name('genre_store');
@@ -51,8 +55,7 @@ Route::group(['middleware' => ['auth','admin'], 'namespace'=> 'App\Http\Controll
 		Route::delete('/{genre}','DestroyController')->name('genre_destroy');
 	});
 
-	Route::group(['namespace'=> 'User','prefix'=>'user'],
-		function() {
+	Route::group(['namespace'=> 'User','prefix'=>'user'], function() {
 		Route::get('/','IndexController')->name('user_index');
 		Route::get('/create','CreateController')->name('user_create');
 		Route::post('/store','StoreController')->name('user_store');
