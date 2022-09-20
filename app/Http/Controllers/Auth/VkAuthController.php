@@ -18,25 +18,22 @@ class VkAuthController extends Controller
     {
         $getUser = Socialite::driver('vkontakte')->user();
 
-        $name = $getUser->name;
+        $name = $getUser->user['first_name'];
         $email = $getUser->email;
-        $password = Hash::make('12345678');
+        $password = Hash::make(rand(8,12));
 
         $user = User::where('email', $email)->first();
 
-        if($user){
-            Auth::login($user);
-            return redirect()->route('home_page');
-        }else{
-            $createUser = User::create([
+        if(!$user){
+            $user = User::create([
                 'name' => $name,
                 'email' => $email,
                 'password' => $password,
             ]);
-            Auth::login($createUser);
-            return redirect()->route('home_page');
         }
 
+        Auth::login($user);
+        return redirect()->route('home_page');
 
 
     }

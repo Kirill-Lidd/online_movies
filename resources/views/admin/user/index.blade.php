@@ -2,7 +2,7 @@
 
 @section('page')
 <div class="mt-5 ms-5 col-8 ">
-	<h1>Фильмы</h1>
+	<h1>Пользователи</h1>
 	<div class="mt-5">
 		<div>
 			<a href="{{ route('user_create') }}" class="btn btn-success">Создать пользователя</a>
@@ -28,9 +28,9 @@
 			      		@method('delete')
 			      			<button type="submit" class=" text-decoration-none text-danger border-0 bg-dark">Удалить</button>
 			      	</form>
-			  		</td>	
+			  		</td>
 			    </tr>
-			  	@endforeach		    
+			  	@endforeach
 			  </tbody>
 			</table>
 		</div>

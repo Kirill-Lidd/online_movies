@@ -23,14 +23,15 @@
 			      <td>{{ $film->title }}</td>
 			      <td class="d-flex justify-content-around" colspan="2">
 			      	<a href="{{ route('film_edit', $film->id) }}" class="text-decoration-none">Изменить</a>
+			      	<a href="{{ route('comment_index', $film->id) }}" class="text-decoration-none text-light">Комментарии</a>
 			      	<form action="{{ route('film_destroy', $film->id) }}" method="post">
 			      		@csrf
 			      		@method('delete')
 			      			<button type="submit" class=" text-decoration-none text-danger border-0 bg-dark">Удалить</button>
 			      	</form>
-			  		</td>	
+			  		</td>
 			    </tr>
-			  	@endforeach		    
+			  	@endforeach
 			  </tbody>
 			</table>
 		</div>
