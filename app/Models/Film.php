@@ -25,4 +25,8 @@ class Film extends Model
     {
     	return $this->hasMany(Comment::class);
     }
+    public function orderByDescComments()
+    {
+    	return $this->hasMany(Comment::class)->orderBy('id','DESC')->get();
+    }
 }

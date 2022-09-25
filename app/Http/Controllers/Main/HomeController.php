@@ -10,7 +10,7 @@ class HomeController extends Controller
 {
     public function __invoke()
     {
-    	$films = Film::paginate(20);
+    	$films = Film::orderBy('id','DESC')->paginate(20);
     	$genres = Genre::All();
     	return view('layouts.home',compact('films','genres'));
     }

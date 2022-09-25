@@ -1,10 +1,10 @@
-@inject('CategoryController', 'App\Http\Controllers\Main\CategoryController')
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <script src="{{ asset('js/app.js') }}" defer></script>
     <title>OnlineMovie фильмы и сериалы</title>
 </head>
 
@@ -19,7 +19,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto my-2 my-lg-0 " style="--bs-scroll-height: 100px;">
-                        @foreach($CategoryController->categories() as $category)
+                        @foreach($categories as $category)
                         <li class="nav-item dropdown">
                             <a href="{{route('movies_by_category_page', $category->id)}}" class="nav-link" >{{$category->title}}</a>
                         </li>
@@ -61,7 +61,6 @@
         </div>
         <!-- Copyright -->
     </footer>
-    <script src="{{ asset('js/app.js') }}"></script>
 </body>
 
 </html>

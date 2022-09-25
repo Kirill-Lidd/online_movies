@@ -13,6 +13,7 @@
 			    <tr>
 			      <th scope="col">#</th>
 			      <th scope="col">Имя</th>
+			      <th scope="col">Комментарии</th>
 			      <th class="text-center" scope="col" colspan="2">Действие</th>
 			    </tr>
 			  </thead>
@@ -21,9 +22,11 @@
 			    <tr>
 			      <th scope="row">{{ $film->id }}</th>
 			      <td>{{ $film->title }}</td>
-			      <td class="d-flex justify-content-around" colspan="2">
+			      <td>
+                      <a href="{{ route('comment_index', $film->id) }}" class="text-decoration-none text-light">Просмотреть ({{$film->comments->count()}})</a>
+                  </td>
+			      <td class="" colspan="2">
 			      	<a href="{{ route('film_edit', $film->id) }}" class="text-decoration-none">Изменить</a>
-			      	<a href="{{ route('comment_index', $film->id) }}" class="text-decoration-none text-light">Комментарии</a>
 			      	<form action="{{ route('film_destroy', $film->id) }}" method="post">
 			      		@csrf
 			      		@method('delete')

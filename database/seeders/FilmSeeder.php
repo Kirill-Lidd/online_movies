@@ -17,7 +17,7 @@ class FilmSeeder extends Seeder
     public function run()
     {
 
-        Film::factory(10)
+        Film::factory(20)
             ->has(Genre::factory(3))
             ->create();
     }
