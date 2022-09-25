@@ -89,10 +89,73 @@
             </div>
         </div>
     </div>
+
     <div class="border-top border-white mt-5">
         <div class="mt-3">
-            <h2>Отзывы</h2>
+            <div class="d-flex justify-content-around mt-5">
+                <div style="min-width: 600px;">
+                    <h2>Отзывы</h2>
+                    @if($comments->count() > 0)
+                        @foreach($comments as $comment)
+                            @switch($comment->type_comment)
+                            @case(0)
+                                <div class="bg-danger rounded-2 p-3 mt-4">
+                                    <div class="d-flex justify-content-between">
+                                        <h3>{{$comment->user->name}}</h3>
+                                        <span>{{$comment->created_at}}</span>
+                                    </div>
+                                    <h4>{{$comment->title}}</h4>
+                                    <p>{{$comment->content}}</p>
+                                </div>
+                                @break
 
+                            @case(1)
+                                <div class="bg-success rounded-2 p-3 mt-4">
+                                    <div class="d-flex justify-content-between">
+                                        <h3>{{$comment->user->name}}</h3>
+                                        <span>{{$comment->created_at}}</span>
+                                    </div>
+                                    <h4>{{$comment->title}}</h4>
+                                    <p>{{$comment->content}}</p>
+                                </div>
+                                @break
+
+                            @default
+                                <div class="bg-secondary  rounded-2 p-3 mt-4">
+                                    <div class="d-flex justify-content-between">
+                                        <h3>{{$comment->user->name}}</h3>
+                                        <span>{{$comment->created_at}}</span>
+                                    </div>
+                                    <h4>{{$comment->title}}</h4>
+                                    <p>{{$comment->content}}</p>
+                                </div>
+                        @endswitch
+                    @endforeach
+                    @else
+                        <h4 class="mt-4">Коментариев нет, будьте первым!</h4>
+                    @endif
+                </div>
+                <div class=" text-black ms-5" style="min-width: 400px;">
+                    <h2 class="text-light">Оставить отзыв</h2>
+                    <form action="{{route('comment_store',$film->id)}}" class="mt-4" method="post">
+                        @csrf
+                        <select class="form-select mb-3" name="type_comment">
+                            @foreach($typeComment as $id => $type)
+                            <option value="{{$id}}">{{$type}}</option>
+                            @endforeach
+                        </select>
+                        <div class="form-floating mb-3">
+                            <input name="title" type="text" autocomplete="off" class="form-control" id="floatingInput" placeholder="name@example.com">
+                            <label for="floatingInput">Заголовок</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <textarea name="content" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                            <label for="floatingTextarea2">Комментарий</label>
+                        </div>
+                        <input type="submit" class="btn btn-outline-light">
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>

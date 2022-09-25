@@ -15,8 +15,12 @@ use Illuminate\Support\Facades\Route;
 Route::group(['namespace'=> 'App\Http\Controllers\Main'], function() {
 	Route::get('/','HomeController')->name('home_page');
 	Route::get('/film/{film}','FilmController')->name('film_page');
-	Route::get('/categories/{category}','MoviesByCategoryController')->name('movies_by_category_page');
-	Route::get('/search','SearchController')->name('search');
+    Route::get('/categories/{category}','MoviesByCategoryController')->name('movies_by_category_page');
+    Route::get('/search','SearchController')->name('search');
+    Route::group(['namespace' => 'Comment', 'prefix' => 'comment'], function () {
+        Route::post('/store/film/{id}','StoreController')->name('comment_store');
+    });
+
 
 });
 
@@ -75,7 +79,3 @@ Route::group(['namespace' => 'App\Http\Controllers\Auth','middleware' => 'guest'
 });
 
 Auth::routes();
-
-
-
-
